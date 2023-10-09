@@ -1,32 +1,11 @@
-import openai
+import Functions.Transcription, Functions.NotesMaker
 
-api_key = "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"
-openai.api_key = api_key
+api_key = "<your key>"
 
-messages = [{"role":"system", "content":"You are a teacher teaching english, max word limit fifty words"}]
+video_path = "Assets/How To Use Chopsticks - In About A Minute 🍜.mp4"
+video_file = open(video_path, "rb")
 
-print("Your teacher is ready")
-while input!= "quit()":
-    message = input()
-    messages.append({"role": "user", "content":message})
-    response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        messages = messages
-    )
-    reply = response["choices"] [0] ["message"] ["content"]
-    messages.append({"role": "assistant", "content": reply})
-    print("\n" + reply + "\n")
+transcript = Functions.Transcription.whisper(api_key, video_file)
+cleanNotes = Functions.NotesMaker.gpt(api_key, transcript)
 
-
-#whisper
-# model_id = 'whisper-1'
-
-# media_file_path = 'path'
-# media_file = open(media_file_path)
-
-# response = openai.Audio.transcribe(
-#     api_key = api_key,
-#     model = model_id,
-#     file = media_file,
-#     response_format = 'srt' 
-# )
+print(cleanNotes)
