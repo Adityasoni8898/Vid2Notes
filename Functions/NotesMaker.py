@@ -3,6 +3,9 @@ import openai
 def gpt(api_key, transcript):
 
     openai.api_key = api_key
+    print("You are almost there!")
+    print("Making into notes....")
+    
 
     response = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",
