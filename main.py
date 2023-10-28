@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/vid2notes", methods=["POST"])
 def vid2notes():
-    api_key = <api key>
+    api_key = <api_key>
     data = request.get_json()
     ytlink = data["url"]
 
