@@ -21,9 +21,3 @@ Follow these steps to set up and run the YouTube Notes API on your local machine
 - Whisper ASR API key
 - YouTube API key
 
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/YouTubeNotesAPI.git

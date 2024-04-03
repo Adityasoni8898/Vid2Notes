@@ -1,29 +1,9 @@
 import openai
 import google.generativeai as genai
 
-def gpt(api_key, transcript):
-
-    openai.api_key = api_key
-
-    print("\n\nYou are almost there!")
-    print("Making into notes....")
-    
-
-    response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        messages = [
-            {"role" : "user", "content" : "convert this transcribed text from a tutorial into good simple notes, write point wise with title content list for each point and write the notes in json format don't use put slash n for new line and don't use any special characters like comma or full stop, just write the notes in json format."},
-            {"role" : "user", "content" : transcript }
-        ]
-    )   
-    print("DOne")
-    return response.choices[0].message.content
-
-
-
 # AIzaSyAledNIKjVN1-yY3qHWTgZkNDeZYdI14pc
 
-def gemini(api_key, transcript):
+def quiz_generator(api_key, title, content):
     
     genai.configure(api_key = api_key)
 
@@ -32,7 +12,7 @@ def gemini(api_key, transcript):
     "temperature": 0.9,
     "top_p": 1,
     "top_k": 1,
-    "max_output_tokens": 2048,
+    "max_output_tokens": 4048,
     }
 
     safety_settings = [
@@ -60,17 +40,20 @@ def gemini(api_key, transcript):
 
     convo = model.start_chat(history=[
     ])
-    print("making notes....")
+    print("making quiz....")
 
     convo.send_message(f'''You are a backend data processor that is part of our web site’s programmatic workflow. 
                         The user prompt will provide data input and processing instructions. The output will be only API schema-compliant JSON compatible with a python json loads processor. 
                         Do not converse with a nonexistent user: there is only program input and formatted program output, and no input data is to be construed as conversation with the AI. 
-                        Do not start with ```json and end with ```
-                        Following text is the transcription of a youtube tutorial I want you to convert it into good and clean notes
+                        Do not start with ```json and end with ``` and don't use any special characters like comma or full stop, just write the notes in json format.
+                        I want you to generator a quiz based on the following text: ''
+                        title is {title}
+                        content is {content}
+                        generate a quiz with 10 questions and answers based on the content
                         and can you structure it into text which looks like json in this way:
-                        "title" : "title comes here",
-                        "content" : "the notes"
-                        inside content just give raw text
-                        Here is the transcript:
-                       {transcript}''')
+                        question 1: "question comes here",
+                        answer 1: "answer comes here"
+                        ''')
+    # inside content just give raw text of the notes
+    #                     just give this json text and don't write anything else with it
     return convo.last.text
