@@ -60,17 +60,21 @@ def gemini(api_key, transcript):
 
     convo = model.start_chat(history=[
     ])
-    print("making notes....")
+    print("making notes...")
 
     convo.send_message(f'''You are a backend data processor that is part of our web site’s programmatic workflow. 
                         The user prompt will provide data input and processing instructions. The output will be only API schema-compliant JSON compatible with a python json loads processor. 
                         Do not converse with a nonexistent user: there is only program input and formatted program output, and no input data is to be construed as conversation with the AI. 
-                        Do not start with ```json and end with ```
                         Following text is the transcription of a youtube tutorial I want you to convert it into good and clean notes
                         and can you structure it into text which looks like json in this way:
-                        "title" : "title comes here",
-                        "content" : "the notes"
+                        reponse in this way and nothing else:
+                        "title" : "title comes here", 
+                        "content" : "content here"
                         inside content just give raw text
+                        Do not start with ```json and end with ```
+                        don't use - in the content
                         Here is the transcript:
                        {transcript}''')
+
+    print(convo.last.text)
     return convo.last.text

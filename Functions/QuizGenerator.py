@@ -7,6 +7,7 @@ def quiz_generator(api_key, title, content):
     
     genai.configure(api_key = api_key)
 
+
     # Set up the model
     generation_config = {
     "temperature": 0.9,
@@ -52,7 +53,8 @@ def quiz_generator(api_key, title, content):
                         generate a quiz with 10 questions and answers based on the content
                         and can you structure it into text which looks like json in this way:
                         question 1: "question comes here",
-                        answer 1: "answer comes here"
+                        answer 1: "answer comes here",
+                        put it inside a json object
                         ''')
     # inside content just give raw text of the notes
     #                     just give this json text and don't write anything else with it
