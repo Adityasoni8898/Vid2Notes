@@ -9,16 +9,18 @@ from fastapi.params import Body
 import json
 import re
 import os
+from dotenv import find_dotenv, load_dotenv 
 
-gpt_k = ""
-gemini_k = ""
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path)
+
+gpt_k = os.getenv("gpt_k")
+gemini_k = os.getenv("gemini_k")
 
 app = FastAPI()
 
 @app.post("/vid2notes/notes_generator")
 def vid2notes(payload : dict = Body(...)):
-    
-    
 
     ytlink = payload["url"]
 
