@@ -1,6 +1,6 @@
-# YouTube Notes API
+# YouTube Video to Notes API
 
-YouTube Notes API is a Flask-based web API that leverages OpenAI's GPT, Whisper ASR, and the YouTube API to generate textual summaries (notes) from YouTube videos. Users can provide a YouTube video URL as input, and the API will process the audio content to create concise notes.
+YouTube Notes API is a FastAPI-based web API that leverages OpenAI's GPT, Whisper ASR, and the YouTube API to generate textual summaries (notes) from YouTube videos. Users can provide a YouTube video URL as input, and the API will process the audio content to create concise notes.
 
 ## Features
 
@@ -19,5 +19,4 @@ Follow these steps to set up and run the YouTube Notes API on your local machine
 - FastAPI
 - OpenAI GPT API key
 - Whisper ASR API key
-- YouTube API key
 
