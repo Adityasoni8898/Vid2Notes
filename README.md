@@ -16,7 +16,7 @@ Follow these steps to set up and run the YouTube Notes API on your local machine
 ### Prerequisites
 
 - Python 3.7 or higher
-- Flask
+- FastAPI
 - OpenAI GPT API key
 - Whisper ASR API key
 - YouTube API key
